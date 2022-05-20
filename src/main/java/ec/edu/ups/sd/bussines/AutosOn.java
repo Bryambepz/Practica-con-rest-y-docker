@@ -14,7 +14,7 @@ public class AutosOn {
 	@Inject
 	private AutosDAO autosDAO;
 	
-	public void guardarCliente(Autos auto) {
+	public void guardarAuto(Autos auto) {
 
 		Autos p = autosDAO.read(auto.getPlaca());
 		if (p == null) {
@@ -24,11 +24,11 @@ public class AutosOn {
 		}
 	}
 	
-	public List<Autos> getClientes() {
-		return autosDAO .getList();
+	public List<Autos> getAutos() {
+		return autosDAO.getList();
 	}
 	
-	public Autos buscarCedula(String placa) {
+	public Autos buscarPlaca(String placa) {
 		var listaAutos= autosDAO.getList();
 		for (Autos auto : listaAutos) {
 			System.out.println(auto.toString());
