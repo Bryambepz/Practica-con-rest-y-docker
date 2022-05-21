@@ -16,10 +16,10 @@ public class AutosOn {
 	
 	public void guardarAuto(Autos auto) {
 
-		Autos p = autosDAO.read(auto.getPlaca());
+		Autos p = autosDAO.read(auto.getId());
 		if (p == null) {
 			autosDAO.insert(auto);
-		} else {
+		} else { 
 			autosDAO.update(auto);
 		}
 	}
@@ -36,5 +36,15 @@ public class AutosOn {
 		Autos per;
 		per = listaAutos.stream().filter(p -> p.getPlaca().equals(placa)).findFirst().get();
 		return per;
+	}
+	
+	public int calcularID() {
+		var lista = autosDAO.getList();
+
+		if (lista.size() == 0) {
+			return 1;
+		} else {
+			return lista.size() + 1;
+		}
 	}
 }

@@ -5,10 +5,15 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "servicios")
+@NamedQuery(name = "Autos.findAll", query = "SELECT p FROM Autos p")
 public class Autos implements Serializable{
 	@Id
+	@Column(name = "Id")
 	private int id;
 	@Column(name = "Marca")
 	private String marca;

@@ -3,10 +3,9 @@ package ec.edu.ups.sd.DAO;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 import ec.edu.ups.sd.modelo.Autos;
 
@@ -24,25 +23,24 @@ public class AutosDAO {
 		em.merge(per);
 	}
 
-	public Autos read(String placa) {
-		Autos c = em.find(Autos.class, placa);
+	public Autos read(int id) {
+		Autos c = em.find(Autos.class, id);
 		return c;
 	}
-	
-	
+
 	public List<Autos> getList() {
 		String jpql = "Select p From Autos p";
 
-		Query q = (Query) em.createQuery(jpql, Autos.class);
+		Query q = em.createQuery(jpql, Autos.class);
 
-		return ((TypedQuery<Autos>) q).getResultList();
+		return q.getResultList();
 	}
-
-	public List<Autos> getListNombre(String filtro) {
-		String jpql = "Select p From Persona p" + " where nombre LIKE ?1";
-
-		Query q = (Query) em.createQuery(jpql, Autos.class);
-		((javax.persistence.Query) q).setParameter(1, filtro);
-		return ((javax.persistence.Query) q).getResultList();
-	}
+	
+//	public List<Autos> getListNombre(String filtro) {
+//		String jpql = "Select p From Persona p" + " where nombre LIKE ?1";
+//
+//		Query q = em.createQuery(jpql, Autos.class);
+//		q.setParameter(1, filtro);
+//		return q.getResultList();
+//	}
 }
