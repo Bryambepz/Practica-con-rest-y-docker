@@ -19,11 +19,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ec.edu.ups.sd</groupId>
-    <artifactId>practicaRestDocker</artifactId>
+    <artifactId>practicarestdocker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     
     <packaging>war</packaging>
-    <name>practicaRestDocker</name>
+    <name>practicarestdocker</name>
     <description>Insert description for your project here.</description>
 
     <properties>
@@ -47,6 +47,7 @@
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.release>11</maven.compiler.release>
+        <company>sd</company>        
     </properties>
 
     <!-- the JBoss community and Red Hat GA Maven repositories -->
@@ -212,6 +213,47 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
             </plugin>
+            
+            <plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>0.33.0</version>
+					<configuration>
+						<images>
+							<image>
+								<name>${company}/${project.artifactId}</name>
+								<alias>${project.artifactId}</alias>
+								<build>
+									<tags>
+										<tag>latest</tag>
+									</tags>
+									<contextDir>${project.basedir}/src/main/docker</contextDir>
+									<assembly>
+										<mode>dir</mode>
+										<name>maven/</name>
+										<inline>
+											<files>
+												<file>
+													<source>
+														${project.build.directory}/${project.build.finalName}.${project.packaging}
+													</source>
+													<outputDirectory>.</outputDirectory>
+												</file>
+											</files>
+										</inline>
+									</assembly>
+								</build>
+								<run>
+									<ports>
+										<port>8080:8080</port>
+										<port>9990:9990</port>
+									</ports>
+								</run>
+							</image>
+						</images>
+					</configuration>
+				</plugin>
+            
         </plugins>
     </build>
 

@@ -1,0 +1,9 @@
+ec\edu\ups\sd\bussines\AutosOn.class
+ec\edu\ups\sd\services\AppPath.class
+ec\edu\ups\sd\view\AutosBean.class
+ec\edu\ups\sd\DAO\AutosDAO.class
+ec\edu\ups\sd\modelo\Autos.class
+ec\edu\ups\sd\practicaRestDocker\Jsf23Activator.class
+ec\edu\ups\sd\services\Respuesta.class
+ec\edu\ups\sd\services\AutoRest.class
+ec\edu\ups\sd\services\CORSFilter.class

@@ -17,7 +17,7 @@ services:
        - db:/var/lib/postgresql/data
 
   srvwildfly:
-    image: sd/practicaRestDocker
+    image: sd/practicarestdocker
     container_name: srvwildfly
     hostname: srvwildfly
     environment:
